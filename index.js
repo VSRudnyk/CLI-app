@@ -36,6 +36,19 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
       console.log(addContact);
       break;
 
+    case 'update':
+      const updateContacts = await contactsOperations.updateContact(
+        id,
+        name,
+        email,
+        phone
+      );
+      if (!updateContacts) {
+        throw new Error(`Contact with id=${id} not found`);
+      }
+      console.log(updateContacts);
+      break;
+
     case 'remove':
       const removeContacts = await contactsOperations.removeContact(id);
       if (!removeContacts) {
